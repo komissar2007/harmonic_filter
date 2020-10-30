@@ -18,7 +18,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"file_name\": \"in.wav\",\r\n    \"base_freq\": 50,\r\n    \"harmonics\": 10\r\n}",
+					"raw": "{\r\n    \"sample_rate\": 8000,\r\n    \"base_freq\": 50,\r\n    \"num_harmonics\": 10,\r\n    \"samples\":[0.123456, 0.987653, -0.8542635, -0.23568, 0.123456, 0.987653, -0.8542635, -0.23568, 0.123456, 0.987653, -0.8542635, -0.23568, 0.123456, 0.987653, -0.8542635, -0.23568]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -26,14 +26,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5000/filter",
+					"raw": "http://localhost:5000/harmonic_filter",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "5000",
 					"path": [
-						"filter"
+						"harmonic_filter"
 					]
 				}
 			},

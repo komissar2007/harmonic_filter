@@ -8,18 +8,18 @@ SERVER_PORT = os.environ.get('SERVER_PORT')
 api = Flask(__name__)
 
 
-
-@api.route('/filter', methods=['POST'])
-def perform_filter():
+@api.route('/harmonic_filter', methods=['POST'])
+def harmonic_filter():
     if request.method == 'POST':
         json_request = request.json
         try:
-            file_name = json_request['file_name']
+            sample_rate = json_request['sample_rate']
             base_freq = json_request['base_freq']
-            harmonics = json_request['harmonics']
+            harmonics = json_request['num_harmonics']
+            samples = json_request['samples']
         except:
             abort(Response('ERROR: invalid input', 400))
-        return wav_handler.perform_filter(file_name, base_freq, harmonics)
+        return wav_handler.perform_filter(sample_rate, base_freq, harmonics, samples)
 
 if __name__ == '__main__':
     api.run(host=SERVER_HOST, port=SERVER_PORT)
