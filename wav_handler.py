@@ -4,7 +4,6 @@ import math
 
 from flask import Response, abort
 
-
 def running_mean(x, window_size):
     cumsum = np.cumsum(np.insert(x, 0, 0))
     return (cumsum[window_size:] - cumsum[:-window_size]) / window_size
@@ -18,7 +17,7 @@ def interpret_wav(raw_bytes, n_frames, n_channels):
     return channels
 
 
-def filter(cut_off_freq, channels, filtered, sample_rate):
+def remove_harmonic(cut_off_freq, channels, filtered, sample_rate):
     freq_ratio = (cut_off_freq / sample_rate)
     N = int(math.sqrt(0.196196 + freq_ratio ** 2) / freq_ratio)
 
@@ -45,7 +44,7 @@ def perform_filter(file_name, base_freq, nharmonics):
     channels = interpret_wav(signal, n_frames, n_channels)
     filtered = channels[0]
     for x in range(2, int(nharmonics)):
-        filtered = filter(cut_off_freq, channels, filtered, sample_rate)
+        filtered = remove_harmonic(cut_off_freq, channels, filtered, sample_rate)
     wav_file = wave.open("filtered/" + output_file, "w")
     wav_file.setparams((1, amp_width, sample_rate, n_frames, input_file.getcomptype(), input_file.getcompname()))
     wav_file.writeframes(filtered.tobytes('C'))
