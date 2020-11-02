@@ -12,7 +12,7 @@ run command:
 3. docker-compose start harmonic-filter (will start the service)
 
 docker image can be downloaded from google drive link:
- https://drive.google.com/file/d/1kRpzvWZ-XvP_GOt4AqGuvhq5PnzpQPkh/view?usp=sharing
+ https://drive.google.com/file/d/1saEF-fa2a9GUadLsQQ83j73cjGkRxqNA/view?usp=sharing
 
 in order to pull image from dockerhub:
 docker pull slavarub/harmonic-filter:latest
