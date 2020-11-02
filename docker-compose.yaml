@@ -1,6 +1,9 @@
 version: "3.8"
 services:
   harmonic-filter:
-    image: "slavarub/harmonic-filter:final"
+    image: "slavarub/harmonic-filter:latest"
     ports:
       - "5000:5000"
+    volumes:
+      - "C:/Dev/filter/in:/harmonic_filter/files"
+      - "C:/Dev/filter/out:/harmonic_filter/filtered"

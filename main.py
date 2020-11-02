@@ -21,5 +21,20 @@ def harmonic_filter():
             abort(Response('ERROR: invalid input', 400))
         return wav_handler.perform_filter(sample_rate, base_freq, harmonics, samples)
 
+
+@api.route('/filter_file', methods=['POST'])
+def perform_filter_file():
+    if request.method == 'POST':
+        json_request = request.json
+        try:
+            file_name = json_request['file_name']
+            base_freq = json_request['base_freq']
+            harmonics = json_request['harmonics']
+        except:
+            abort(Response('ERROR: invalid input', 400))
+        return wav_handler.perform_filter_file(file_name, base_freq, harmonics)
+
+
+
 if __name__ == '__main__':
     api.run(host=SERVER_HOST, port=SERVER_PORT)
